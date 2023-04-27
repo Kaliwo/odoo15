@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_doctor_form" model="ir.ui.view">
+        <field name="name">Doctor</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/div[hasclass('oe_button_box')]" position="inside">
+                    <button name="open_appointment"
+                            class="oe_stat_button" icon="fa-calendar"
+                            type="object">
+                        <field name="app_count" string="Appointment"
+                               widget="statinfo"></field>
+                    </button>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem name="Patient Appointment"
+              id="patient_appointment_root"
+              sequence='10'/>
+
+    <menuitem name="Doctor"
+              id="doctor_root"
+              parent="patient_appointment_root"
+              sequence="10"/>
+
+    <menuitem name="Doctor"
+              id="doctor_details"
+              parent="doctor_root"
+              action="base_hospital_management.employee_doctor_view"
+              sequence="11"/>
+
+</odoo>
+

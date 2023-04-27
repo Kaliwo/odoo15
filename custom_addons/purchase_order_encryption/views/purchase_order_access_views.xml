@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_purchase_order_access_form" model="ir.ui.view">
+        <field name="name">purchase.order.access.form</field>
+        <field name="model">purchase.order.access
+        </field>
+        <field name="arch" type="xml">
+            <form string="Enter Access Key">
+                <group>
+                    <field name="access_key"/>
+                </group>
+                <footer>
+                    <button name="action_access_purchase_order" string="Access Purchase Order" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_purchase_order_access" model="ir.actions.act_window">
+        <field name="name">Enter Access Key</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order.access</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_purchase_order_access_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

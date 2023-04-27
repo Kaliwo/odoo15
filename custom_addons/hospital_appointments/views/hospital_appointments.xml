@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="patient_appointment_form" model="ir.ui.view">
+        <field name="name">hospital.appointment</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <form>
+                 <header>
+                   <field name="state" widget="statusbar" clickable="1"/>
+                     <button name="action_appointment_sent" string="Send By Email"
+                            class="oe_highlight" type="object">
+                    </button>
+                     <button name="action_appointment_cancel" string="Cancel"
+                            class="oe_highlight" type="object" states="draft,approval">
+                    </button>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="appointment_seq" readonly="1"/>
+                        </h1>
+                    </div>
+                        <div class="oe_title">
+                            <h2 class="d-flex">
+                                <field name="patient_name" placeholder="Patient's Name" required="True"/>
+                            </h2>
+                        </div>
+                    <group>
+                    <group>
+                        <field name="age"/>
+                        <field name="gender"/>
+                         <field name="address"/>
+                         <field name="doc_id"/>
+                         <field name="user_id"/>
+                    </group>
+                    <group>
+                        <field name="phone"/>
+                        <field name="email"/>
+                        <field name="time"/>
+                        <field name="pm"/>
+                        <field name="appointment_date"/>
+                    </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="appointment_tree" model="ir.ui.view">
+        <field name="name">hospital.appointment.tree</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="appointment_seq"/>
+                <field name="patient_name"> </field>
+                 <field name="gender"/>
+                 <field name="doc_id"/>
+                <field name="appointment_date"> </field>
+                <field name="phone"> </field>
+                <field name="email"> </field>
+            </tree>
+        </field>
+    </record>
+
+     <record id="patient_appointment_calendar" model="ir.ui.view" >
+        <field name="name">hospital.appointment.calendar</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <calendar string="Appointments"  date_start="appointment_date" color="patient_name">
+                <field name="appointment_seq"/>
+                <field name="patient_name"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="hospital_appointment_action">
+        <field name="name">Appointment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hospital.appointment</field>
+        <field name="view_mode">calendar,tree,form</field>
+        <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create appointment
+                </p><p>
+                    You can enter patient appointment here.
+                </p>
+            </field>
+    </record>
+
+    <menuitem name="Patient Appointment"
+              id="patient_appointment_root"
+              sequence='10'/>
+    <menuitem name="Appointment"
+              id="appointment_root"
+              parent="patient_appointment_root"
+              sequence="9"/>
+    <menuitem name="Appointment"
+              id="appointment_details"
+              parent="appointment_root"
+              action="hospital_appointment_action"
+              sequence="8"/>
+</odoo>
+

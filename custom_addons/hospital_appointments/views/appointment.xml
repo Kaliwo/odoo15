@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    	<template id="appointment_form">
+        	<t t-call="website.layout">
+            	<div id="request_form">
+                	<section class="s_website_form" data-vcss="001" data-snippet="s_website_form">
+                    	<div class="container">
+                        	<form id="request_form" method="post" action="/create/appointment">
+                            	<div class="s_website_form_rows row s_col_no_bgcolor">
+                                	<div class="form-group col-12 s_website_form_field s_website_form_required">
+                                    	<div class="row s_col_no_resize s_col_no_bgcolor">
+                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+                                               	style="width: 200px" >
+                                            	<span class="s_website_form_label_content">Patient Name</span>
+                                            	<span class="s_website_form_mark">*</span>
+                                        	</label>
+                                        	<div class="col-sm">
+                                            	<input type="text"
+                                                   	class="form-control s_website_form_input" name="patient_name"
+                                                   	required=""/>
+                                        	</div>
+                                    	</div>
+                                	</div>
+									<div class="form-group col-12 s_website_form_field s_website_form_required">
+                                    	<div class="row s_col_no_resize s_col_no_bgcolor">
+                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+                                               	style="width: 200px" >
+                                            	<span class="s_website_form_label_content">Gender</span>
+                                            	<span class="s_website_form_mark">*</span>
+                                        	</label>
+                                        	<div class="col-sm">
+                                            	<select name="gender"
+														class="form-control link-style" required="">
+													<option t-attf-value="female">Female</option>
+													<option t-attf-value="male">Male</option>
+													<option t-attf-value="other">Others</option>
+												</select>
+                                        	</div>
+                                    	</div>
+                                	</div>
+									<div class="form-group col-12 s_website_form_field s_website_form_required">
+                                    	<div class="row s_col_no_resize s_col_no_bgcolor">
+                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+                                               	style="width: 200px" >
+                                            	<span class="s_website_form_label_content">Age</span>
+                                            	<span class="s_website_form_mark">*</span>
+                                        	</label>
+                                        	<div class="col-sm">
+                                            	<input type="tel"
+                                                   	class="form-control s_website_form_input" name="age" required=""/>
+                                        	</div>
+                                    	</div>
+                                	</div>
+                                	<div class="form-group col-12 s_website_form_field" data-type="char"
+                                     	data-name="Field">
+                                    	<div class="row s_col_no_resize s_col_no_bgcolor">
+                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+                                               	style="width: 200px" >
+                                            	<span class="s_website_form_label_content">Phone Number</span>
+                                        	</label>
+                                            <div class="col-sm">
+                                            	<input type="tel"
+                                                   	class="form-control s_website_form_input" name="phone"/>
+                                        	</div>
+                                    	</div>
+                                	</div>
+                                	<div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     	data-type="char" data-name="Field">
+                                    	<div class="row s_col_no_resize s_col_no_bgcolor">
+                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+                                               	style="width: 200px" >
+                                            	<span class="s_website_form_label_content">Email</span>
+                                            	<span class="s_website_form_mark">*</span>
+                                        	</label>
+                                        	<div class="col-sm">
+                                            	<input id="email" type="tel"
+                                                   	class="form-control s_website_form_input" name="email" required=""/>
+                                        	</div>
+                                    	</div>
+                                	</div>
+									<div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     	data-type="char" data-name="Field">
+                                    	<div class="row s_col_no_resize s_col_no_bgcolor">
+                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+                                               	style="width: 200px" >
+                                            	<span class="s_website_form_label_content">Doctor</span>
+                                            	<span class="s_website_form_mark">*</span>
+                                        	</label>
+                                        	<div class="col-sm">
+												<select name="doc_id" id="doc_id"
+                                                    	class="form-control link-style">
+                                                	<t t-foreach="doc_name" t-as="doc">
+                                                    	<option t-att-value="doc.id">
+                                                        	<t t-esc="doc.name" t-att-value="doc.id" required=""/>
+                                                    	</option>
+                                                	</t>
+                                            	</select>
+
+                                        	</div>
+                                    	</div>
+                                	</div>
+									<div class="form-group col-12 s_website_form_field s_website_form_required"
+                                     	data-type="char" data-name="Field">
+                                    	<div class="row s_col_no_resize s_col_no_bgcolor">
+                                        	<label class="col-form-label col-sm-auto s_website_form_label"
+                                               	style="width: 200px" >
+                                            	<span class="s_website_form_label_content">Appointment Date</span>
+                                            	<span class="s_website_form_mark">*</span>
+                                        	</label>
+                                        	<div class="col-sm">
+                                            	<input id="appointment_date" type="date" name="appointment_date" class="form-control o_website_form_input o_website_form_date"
+												required=""/>
+                                        	</div>
+                                    	</div>
+                                	</div>
+                                	<div class="form-group col-12 s_website_form_submit" data-name="Submit Button">
+                                    	<div style="width: 200px;" class="s_website_form_label"/>
+										<a t-attf-href="'report/pdf/hospital_appointments.patient_card/%s'%patient">
+                                    	    <button type="submit" class="btn btn-primary pull-left">Submit</button>
+										</a>
+                                	</div>
+                            	</div>
+                        	</form>
+                    	</div>
+                	</section>
+            	</div>
+        	</t>
+    	</template>
+	</data>
+</odoo>
+

@@ -1,0 +1,28 @@
+[package]
+name = "patient-data"
+version = "1.0.0"
+authors = ["Alinafe Kaliwo"]
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+near-sdk = "4.0.0"
+uint = { version = "0.9.3", default-features = false }
+rsa = "0.4.0"
+rand = "0.8.5"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+getrandom = { version = "0.2.3", features = ["js"] }
+
+[profile.release]
+codegen-units = 1
+opt-level = "z"
+lto = true
+debug = false
+panic = "abort"
+overflow-checks = true
+
+[workspace]
+members = []

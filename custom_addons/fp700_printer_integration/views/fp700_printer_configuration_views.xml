@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- FP700 Printer Configuration Form View -->
+        <record id="view_fp700_printer_configuration_form" model="ir.ui.view">
+            <field name="name">fp700.printer.configuration.form</field>
+            <field name="model">fp700.printer.configuration</field>
+            <field name="arch" type="xml">
+                <form string="FP700 Printer Configuration">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="serial_port"/>
+                            <field name="baud_rate"/>
+                            <!-- Add other configuration fields if necessary -->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- FP700 Printer Configuration Action -->
+        <record id="action_fp700_printer_configuration" model="ir.actions.act_window">
+            <field name="name">FP700 Printer Configuration</field>
+            <field name="res_model">fp700.printer.configuration</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_fp700_printer_configuration_form"/>
+        </record>
+
+        <!-- FP700 Printer Configuration Menu Item -->
+        <menuitem id="menu_fp700_printer_configuration" name="FP700 Printer Configuration"
+                  parent="point_of_sale.menu_point_root"
+                  action="action_fp700_printer_configuration"
+                  sequence="20" groups="base.group_system"/>
+    </data>
+</odoo>

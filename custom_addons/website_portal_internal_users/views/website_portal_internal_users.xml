@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <template id="internal_users" name="Internal Users">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container mt-4">
+                    <h3>Doctors</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="users" t-as="user">
+                                <tr>
+                                    <td><t t-esc="user.name"/></td>
+                                    <td><t t-esc="user.email"/></td>
+                                    <td>
+                                        <t t-if="user.partner_id.street">
+                                            <t t-esc="user.partner_id.street"/><br/>
+                                        </t>
+                                        <t t-if="user.partner_id.street2">
+                                            <t t-esc="user.partner_id.street2"/><br/>
+                                        </t>
+                                        <t t-if="user.partner_id.city">
+                                            <t t-esc="user.partner_id.city"/>
+                                        </t>
+                                        <t t-if="user.partner_id.zip">
+                                            <t t-esc="user.partner_id.zip"/>
+                                        </t>
+                                        <t t-if="user.partner_id.state_id">
+                                            <t t-esc="user.partner_id.state_id.name"/><br/>
+                                        </t>
+                                        <t t-if="user.partner_id.country_id">
+                                            <t t-esc="user.partner_id.country_id.name"/>
+                                        </t>
+                                    </td>
+                                    <td><t t-esc="user.partner_id.phone"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="vendor_list" name="Vendor List">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="container mt-4">
+                    <h3>Pharmacists List</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="vendors" t-as="vendor">
+                                <tr>
+                                    <td><t t-esc="vendor.name"/></td>
+                                    <td><t t-esc="vendor.email"/></td>
+                                    <td>
+                                        <t t-if="vendor.street">
+                                            <t t-esc="vendor.street"/><br/>
+                                        </t>
+                                        <t t-if="vendor.street2">
+                                            <t t-esc="vendor.street2"/><br/>
+                                        </t>
+                                        <t t-if="vendor.city">
+                                            <t t-esc="vendor.city"/>
+                                        </t>
+                                        <t t-if="vendor.zip">
+                                            <t t-esc="vendor.zip"/>
+                                        </t>
+                                        <t t-if="vendor.state_id">
+                                            <t t-esc="vendor.state_id.name"/><br/>
+                                        </t>
+                                        <t t-if="vendor.country_id">
+                                            <t t-esc="vendor.country_id.name"/>
+                                        </t>
+                                    </td>
+                                    <td><t t-esc="vendor.phone"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+
+        <record id="action_internal_users" model="ir.actions.server">
+            <field name="name">Doctors</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="state">code</field>
+            <field name="code">action = "/internal_users"</field>
+        </record>
+
+        <record id="menu_internal_users" model="website.menu">
+            <field name="name">Doctors</field>
+            <field name="url">/internal_users</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">25</field>
+        </record>
+
+        <record id="menu_vendor_list" model="website.menu">
+            <field name="name">Pharmacists</field>
+            <field name="url">/vendor_list</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">30</field>
+        </record>
+    </data>
+</odoo>

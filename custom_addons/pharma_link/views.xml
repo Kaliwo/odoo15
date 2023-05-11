@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_sales_order_form" model="ir.ui.view">
+        <field name="name">pharma_link.sales.order.form</field>
+        <field name="model">pharma_link.sales.order</field>
+        <field name="arch" type="xml">
+            <form string="Sales Order">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="state"/>
+                    </group>
+                    <notebook>
+                        <page string="Order Lines">
+                            <field name="order_line"/>
+                        </page>
+                        <page string="Purchase Orders">
+                            <field name="purchase_order_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_form" model="ir.ui.view">
+    <field name="name">pharma_link.purchase.order.form</field>
+    <field name="model">pharma_link.purchase.order</field>
+    <field name="arch" type="xml">
+        <form string="Purchase Order">
+            <sheet>
+                <div class="oe_title">
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name"/></h1>
+                </div>
+                <group>
+                    <field name="partner_id"/>
+                    <field name="state"/>
+                    <field name="sales_order_id"/>
+                </group>
+                <notebook>
+                    <page string="Order Lines">
+                        <field name="order_line"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+    </record>
+
+    <record id="view_sales_order_tree" model="ir.ui.view">
+    <field name="name">pharma_link.sales.order.tree</field>
+    <field name="model">pharma_link.sales.order</field>
+    <field name="arch" type="xml">
+            <tree string="Sales Order">
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_tree" model="ir.ui.view">
+        <field name="name">pharma_link.purchase.order.tree</field>
+        <field name="model">pharma_link.purchase.order</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase Order">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="state"/>
+                <field name="sales_order_id"/>
+            </tree>
+        </field>
+    </record>
+        <!-- Sales Order Action -->
+    <record id="action_sales_order" model="ir.actions.act_window">
+        <field name="name">Sales Orders</field>
+        <field name="res_model">pharma_link.sales.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Purchase Order Action -->
+    <record id="action_purchase_order" model="ir.actions.act_window">
+        <field name="name">Purchase Orders</field>
+        <field name="res_model">pharma_link.purchase.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Sales Order Menu -->
+   <menuitem id="menu_sales_order" name="Sales Orders" action="action_sales_order" parent="sale.menu_sale_order" sequence="1"/>
+
+
+    <!-- Purchase Order Menu -->
+    <menuitem id="menu_purchase_order"
+              name="Purchase Orders"
+              action="action_purchase_order"
+              parent="purchase.menu_purchase_root"
+              sequence="1"/>
+
+</odoo>

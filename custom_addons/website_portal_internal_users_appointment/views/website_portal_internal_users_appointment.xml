@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="internal_users_appointment" inherit_id="website_portal_internal_users.internal_users" name="Internal Users Appointment">
+        <xpath expr="//table/thead/tr" position="inside">
+            <th>Appointment</th>
+        </xpath>
+        <xpath expr="//table/tbody" position="inside">
+            <t t-foreach="users" t-as="user">
+            <tr>
+            <td>
+                <t t-if="request.env.user.has_group('base.group_portal')">
+                    <a t-attf-href="/calendar/meeting?action=new&amp;partner_id=#{user.partner_id.id}" class="btn btn-primary">Book Appointment</a>
+                </t>
+                <t t-else="">
+                    <span class="text-muted">Login to book an appointment</span>
+                </t>
+            </td>
+            </tr>
+            </t>
+        </xpath>
+    </template>
+
+        <template id="internal_users_appointment" inherit_id="website_portal_internal_users.internal_users" name="Internal Users Appointment">
+            <xpath expr="//table/tbody" position="inside">
+                <td>
+                    <t t-if="request.env.user.has_group('base.group_user')">
+                        <a href="/book_appointment" class="btn btn-primary">Book Appointment</a>
+                    </t>
+                </td>
+            </xpath>
+        </template>
+
+    <record id="action_internal_user_appointment" model="ir.actions.act_window">
+    <field name="name">Appointments</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">internal.user.appointment</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+            Create your first appointment
+        </p>
+    </field>
+</record>
+
+<menuitem id="menu_internal_user_appointment"
+          name="Appointments"
+          action="action_internal_user_appointment"
+          parent="base.menu_administration"
+          sequence="30"/>
+</odoo>

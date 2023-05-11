@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="email_template_sale_order_encrypted_note" model="mail.template">
+            <field name="name">Sales Order: Encrypted Note</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="subject">Sale Order: ${object.name} (Encrypted Note)</field>
+            <field name="email_from">${(user.email_formatted or '')|safe}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="body_html" type="html">
+                <div>
+                    <p>Hello ${object.partner_id.name},</p>
+                    <p>
+                        We would like to inform you that the sale order <strong>${object.name}</strong>
+                        has been confirmed. Please find the encrypted note below:
+                    </p>
+                    <pre>${object.encrypted_note}</pre>
+                    <p>Best regards,</p>
+                    <p>${user.name}</p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

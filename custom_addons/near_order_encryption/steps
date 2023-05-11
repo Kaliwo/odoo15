@@ -1,0 +1,40 @@
+Creating a custom Odoo module and integrating it with the NEAR blockchain requires several steps. Here's an outline to get you started:
+
+1. Set up your development environment:
+
+Install Python, Node.js, and Yarn.
+Install the Odoo server and create a new Odoo database.
+Install the NEAR Command Line Interface (CLI).
+
+2. Create a new Odoo module:
+
+Create a new directory for your custom module in the Odoo addons folder.
+Create the necessary files and folders, such as __init__.py, __manifest__.py, models, views, and controllers.
+
+3. Modify Odoo's default behavior:
+
+In the models folder, create a new Python file to extend the necessary models (e.g., Sale Order, Purchase Order).
+Override the methods responsible for creating, reading, and updating the records.
+Encrypt the data before saving it, and decrypt it when reading, using the NEAR blockchain.
+
+4. Create a NEAR smart contract:
+
+Write a Rust smart contract with functions for encrypting and decrypting data, as well as managing access keys.
+Compile the smart contract and deploy it to the NEAR blockchain.
+
+5. Integrate the Odoo module with the NEAR smart contract:
+
+In the Odoo module, install the NEAR API Python package.
+Add the necessary configuration settings for connecting to the NEAR blockchain.
+Use the NEAR API to interact with the smart contract from your Odoo module.
+
+6. Modify the module's views and controllers:
+
+Update the views to display the encrypted data correctly.
+Add new actions and controllers to handle encryption, decryption, and key management.
+
+7. Test and deploy the custom module:
+
+Install and test the custom module in your Odoo instance.
+Debug and fix any issues that arise during testing.
+Deploy the custom module to your production Odoo instance.
